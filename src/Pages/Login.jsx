@@ -1,50 +1,61 @@
-import React, { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+
+// Import your perfume images
+import perfume1 from '../assets/na.png'; // Replace with your actual image paths
+import perfume2 from '../assets/naa.png';
+import perfume3 from '../assets/naaa.png';
 
 export default function Login() {
-  const [currentSlide, setCurrentSlide] = useState(0)
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   const perfumes = [
     {
       name: 'Eternal Essence',
       description: 'A timeless fragrance that captures the essence of luxury',
-      color: 'linear-gradient(180deg,#FDE68A,#F59E0B)'
+      image: perfume1, // Use the imported image
     },
     {
       name: 'Midnight Bloom',
       description: 'An exotic blend that blossoms under moonlight',
-      color: 'linear-gradient(180deg,#FDE68A,#B45309)'
+      image: perfume2,
     },
     {
       name: 'Ocean Mist',
       description: 'Fresh aquatic notes with a hint of mountain air',
-      color: 'linear-gradient(180deg,#FDE68A,#D97706)'
-    }
-  ]
+      image: perfume3,
+    },
+  ];
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentSlide((p) => (p + 1) % perfumes.length)
-    }, 4200)
-    return () => clearInterval(timer)
-  }, [perfumes.length])
+      setCurrentSlide((p) => (p + 1) % perfumes.length);
+    }, 4200);
+    return () => clearInterval(timer);
+  }, [perfumes.length]);
 
   // Motion variants
   const container = {
     hidden: { opacity: 0, y: 10 },
-    show: { opacity: 1, y: 0, transition: { staggerChildren: 0.06 } }
-  }
+    show: { opacity: 1, y: 0, transition: { staggerChildren: 0.06 } },
+  };
 
   const fadeUp = {
     hidden: { opacity: 0, y: 12 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.6 } }
-  }
+    show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+  };
 
   const slide = {
     initial: { opacity: 0, x: 30, scale: 0.98 },
-    animate: { opacity: 1, x: 0, scale: 1, transition: { duration: 0.8 } },
-    exit: { opacity: 0, x: -30, scale: 0.98, transition: { duration: 0.6 } }
-  }
+    animate: { opacity: 1, x: 0, scale: 1, transition: { duration: 0.8, ease: "easeInOut" } },
+    exit: { opacity: 0, x: -30, scale: 0.98, transition: { duration: 0.6, ease: "easeInOut" } },
+  };
+
+  const imageAnimation = {
+    initial: { opacity: 0, y: 20, rotate: -5 },
+    animate: { opacity: 1, y: 0, rotate: 0, transition: { duration: 0.8, delay: 0.2, ease: "easeOut" } },
+    exit: { opacity: 0, y: -20, rotate: 5, transition: { duration: 0.5, ease: "easeIn" } },
+  };
 
   return (
     <div className="min-h-screen bg-gray-300 flex items-center justify-center p-6">
@@ -65,8 +76,10 @@ export default function Login() {
           animate="show"
         >
           <motion.div variants={fadeUp} className="text-center mb-8">
-            <h1 className="text-4xl font-extrabold tracking-tight text-yellow-800 font-playfair">Cloud Of Fragrance</h1>
-            <p className="text-sm tracking-widest text-yellow-600 mt-2">Embrace The Essence  Of Elegance</p>
+            <h1 className="text-4xl font-extrabold tracking-tight text-yellow-800 font-playfair">
+              Cloud Of Fragrance
+            </h1>
+            <p className="text-sm tracking-widest text-yellow-600 mt-2">Embrace The Essence Of Elegance</p>
 
             <p className="text-sm tracking-widest text-yellow-600 mt-2">Management Portal</p>
           </motion.div>
@@ -105,7 +118,7 @@ export default function Login() {
                 <span className="ml-2">Remember me</span>
               </label>
 
-              <a href="#" className="font-medium text-yellow-700 hover:text-yellow-600">Forgot password?</a>
+             
             </div>
 
             <motion.div variants={fadeUp}>
@@ -128,7 +141,7 @@ export default function Login() {
         {/* ========== CAROUSEL (right) ========== */}
         <div className="relative overflow-hidden bg-gradient-to-br from-yellow-600 via-yellow-700 to-yellow-800 p-6">
           {/* decorative floating gold circles */}
-          <div className="absolute -left-10 -top-10 w-40 h-40 rounded-full bg-yellow-100/20 blur-2xl"></div>
+          <div className="absolute -left-10 -top-10 w-40 h-40 rounded-full bg-yellow-600/20 blur-2xl"></div>
           <div className="absolute -right-8 bottom-6 w-28 h-28 rounded-full bg-yellow-200/20 blur-2xl"></div>
 
           <div className="relative z-10 flex flex-col items-center justify-center h-full text-white">
@@ -143,14 +156,19 @@ export default function Login() {
               >
                 {/* bottle + label */}
                 <motion.div
-                  animate={{ y: [0, -10, 0] }}
-                  transition={{ duration: 3, repeat: Infinity }}
                   className="relative flex flex-col items-center"
                 >
-                  <div
+                  {/* Use an image tag instead of the colored div */}
+                  <motion.img
+                    variants={imageAnimation}
+                    initial="initial"
+                    animate="animate"
+                    exit="exit"
+                    src={perfumes[currentSlide].image}
+                    alt={perfumes[currentSlide].name}
                     className="bottle-shadow rounded-lg"
-                    style={{ width: 130, height: 220, borderRadius: 20, background: perfumes[currentSlide].color }}
-                  ></div>
+                    style={{ width: 130, height: 220, objectFit: 'cover' }} // objectFit ensures the image fills the container
+                  />
 
                   <div className="mt-4 text-center max-w-xs">
                     <h2 className="text-2xl font-semibold tracking-tight">{perfumes[currentSlide].name}</h2>
@@ -176,11 +194,10 @@ export default function Login() {
             {/* subtle top-right logo/crest */}
             <div className="absolute top-6 right-6 text-right">
               <div className="text-sm font-semibold text-white/90">Cloud Of Fragrance</div>
-             
             </div>
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
