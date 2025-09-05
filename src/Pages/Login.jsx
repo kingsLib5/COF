@@ -52,9 +52,9 @@ export default function Login() {
   };
 
   const imageAnimation = {
-    initial: { opacity: 0, y: 20, rotate: -5 },
-    animate: { opacity: 1, y: 0, rotate: 0, transition: { duration: 0.8, delay: 0.2, ease: "easeOut" } },
-    exit: { opacity: 0, y: -20, rotate: 5, transition: { duration: 0.5, ease: "easeIn" } },
+    initial: { opacity: 0, y: 20, rotateX: 90, rotateY: 20, rotateZ: 10 },
+    animate: { opacity: 1, y: 0, rotateX: 0, rotateY: 0, rotateZ: 0, transition: { duration: 0.8, delay: 0.2, ease: "easeOut" } },
+    exit: { opacity: 0, y: -20, rotateX: 90, rotateY: -20, rotateZ: -10, transition: { duration: 0.5, ease: "easeIn" } },
   };
 
   return (
