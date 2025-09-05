@@ -47,7 +47,7 @@ export default function Login() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white via-yellow-50 to-yellow-100 flex items-center justify-center p-6">
+    <div className="min-h-screen bg-gray-300 flex items-center justify-center p-6">
       {/* small component-scoped styles for subtle shimmer & float */}
       <style>{`
         @keyframes floaty { 0% { transform: translateY(0) } 50% { transform: translateY(-8px) } 100% { transform: translateY(0) } }
