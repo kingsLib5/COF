@@ -206,7 +206,7 @@ function OverView() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 // small helper icon wrapper to keep markup concise

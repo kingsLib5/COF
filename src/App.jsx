@@ -21,17 +21,19 @@ function App() {
     <Router>
       <div>
         <Routes>
+          {/* Public routes */}
           <Route path="/login" element={<Login />} />
           <Route path="/" element={<Selection />} />
 
+          {/* Dashboard routes */}
           <Route path="/cofdashboard" element={<InvenDash />}>
-            <Route index element={<OverView />} /> {/* Default content for /cofdashboard */}
-           <Route path="new-records" element={<RecordStocks />} /> 
-            {/* <Route path="invoices" element={<Invoices />} /> */}
-            {/* <Route path="customers" element={<Customers />} /> */}
-            {/* <Route path="analytics" element={<Analytics />} /> */}
-            {/* <Route path="settings" element={<Settings />} /> */}
-            {/* <Route path="help" element={<Help />} />  */}
+            <Route index element={<OverView />} />
+            <Route path="new-records" element={<RecordStocks />} />
+            <Route path="check-stocks" element={<CheckStocks />} />
+            <Route path="product-list" element={<ProductList />} />
+            <Route path="add-products" element={<AddProduct />} />
+            <Route path="settings" element={<Settings />} />
+            <Route path="help" element={<Help />} />
           </Route>
 
                     <Route path="/cofinvoicedashboard" element={<InvoiceDash />}>
