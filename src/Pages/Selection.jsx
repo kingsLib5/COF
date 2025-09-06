@@ -5,7 +5,7 @@ import { FiArchive, FiFileText, FiPlus, FiCompass, FiAward, FiShoppingBag } from
 
 export default function Selection({
   inventoryRoute = '/cofdashboard',
-  invoiceRoute = '/invoices',
+  invoiceRoute = '/cofinvoicedashboard',
   leftBtnRoute = '/create',
   rightBtnRoute = '/explore',
   leftBtnLabel = 'Create',
@@ -128,7 +128,7 @@ export default function Selection({
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
               onClick={(e) => { e.stopPropagation(); navigate(inventoryRoute) }}
-              className="px-8 py-3.5 bg-gradient-to-r from-[#e4c723] to-[#9c8817] text-white rounded-xl hover:shadow-lg transition-all font-medium flex items-center gap-2 shadow-md shadow-amber-200"
+              className="px-8 py-3.5 bg-gradient-to-r from-amber-600 to-amber-700 text-white rounded-xl hover:shadow-lg transition-all font-medium flex items-center gap-2 shadow-md shadow-amber-200"
             >
               <FiShoppingBag className="h-4 w-4" />
               Access Inventory
@@ -173,7 +173,7 @@ export default function Selection({
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
               onClick={(e) => { e.stopPropagation(); navigate(invoiceRoute) }}
-              className="px-8 py-3.5 bg-gradient-to-r from-[#e4c723] to-[#9c8817] text-white rounded-xl hover:shadow-lg transition-all font-medium flex items-center gap-2 shadow-md shadow-purple-200"
+              className="px-8 py-3.5 bg-gradient-to-r from-amber-600 to-amber-700 text-white rounded-xl hover:shadow-lg transition-all font-medium flex items-center gap-2 shadow-md shadow-purple-200"
             >
               <FiFileText className="h-4 w-4" />
               Access Invoices

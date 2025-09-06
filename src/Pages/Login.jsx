@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 // Import your perfume images
 import perfume1 from '../assets/na.png'; // Replace with your actual image paths
 import perfume2 from '../assets/naa.png';
-import perfume3 from '../assets/naaa.png';
+import perfume3 from '../assets/naaaa.png';
 
 export default function Login() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -121,20 +121,20 @@ export default function Login() {
              
             </div>
 
-            <motion.div variants={fadeUp}>
-              <motion.button
-                type="submit"
-                whileHover={{ scale: 1.01 }}
-                whileTap={{ scale: 0.99 }}
-                className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-yellow-600 to-yellow-700 text-white font-semibold shadow-md gold-shimmer"
-              >
-                Sign in to dashboard
-              </motion.button>
-            </motion.div>
+           <motion.div variants={fadeUp}>
+            <motion.button
+              type="submit"
+              whileHover={{ scale: 1.01 }}
+              whileTap={{ scale: 0.99 }}
+              className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-amber-600 to-amber-700 text-white font-semibold shadow-md "
+            >
+              Sign in to dashboard
+            </motion.button>
+          </motion.div>
           </motion.form>
 
           <motion.div variants={fadeUp} className="mt-8 text-center text-xs text-gray-500">
-            © {new Date().getFullYear()} Cloud Of Fragrance System Management. All rights reserved.[;]
+            © {new Date().getFullYear()} Cloud Of Fragrance System Management. All rights reserved.
           </motion.div>
         </motion.div>
 

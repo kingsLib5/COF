@@ -13,8 +13,8 @@ export default function SideBar({
   onLogout = () => {},
   onExpand = () => {},
   onCollapse = () => {},
-  quickLeftRoute = '/create',
-  quickRightRoute = '/explore'
+  // quickLeftRoute = '/create',
+  // quickRightRoute = '/explore'
 }) {
   const [isOpen, setIsOpen] = useState(initialOpen)
   const [activeItem, setActiveItem] = useState('over-view')
@@ -44,8 +44,7 @@ export default function SideBar({
     { id: 'CheckStocks', label: 'Check-Stocks', icon: <FiFileText size={18} />, to: '/cofdashboard/new-records' },
     { id: 'productlist', label: 'Product-List', icon: <FiUsers size={18} />, to: '/cofdashboard/new-records' },
     { id: 'newproducts', label: 'Add-Products', icon: <FiBarChart2 size={18} />, to: '/cofdashboard/new-records' },
-    { id: 'settings', label: 'Settings', icon: <FiSettings size={18} />, to: '/cofdashboard/new-records' },
-    { id: 'help', label: 'Help & Support', icon: <FiHelpCircle size={18} />, to: '/cofdashboard/new-records' },
+
   ]
 
   // numeric widths (used for framer animation) — match these in parent margins:
@@ -68,7 +67,7 @@ export default function SideBar({
       {/* mobile hamburger to toggle on small screens */}
       <button
         onClick={() => setIsOpen((s) => !s)}
-        className="lg:hidden fixed top-4 left-4 z-50 p-2 rounded-md bg-gradient-to-r from-[#e4c723] to-[#9c8817] text-white shadow-md"
+        className="lg:hidden fixed top-4 left-4 z-50 p-2 rounded-md bg-gradient-to-r from-amber-600 to-amber-700 text-white shadow-md"
         aria-label="Toggle menu"
       >
         <FiMenu size={20} />
@@ -95,11 +94,11 @@ export default function SideBar({
         style={{ minWidth: CLOSED_PX }}
       >
         {/* decorative stripe */}
-        <div className="absolute left-0 top-0 h-full w-1 bg-gradient-to-r from-[#e4c723] to-[#9c8817] pointer-events-none" />
+        <div className="absolute left-0 top-0 h-full w-1 bg-gradient-to-r from-amber-600 to-amber-700 pointer-events-none" />
 
         {/* header */}
         <div className="flex items-center gap-3 p-4 border-b border-amber-100">
-          <div className="w-10 h-10 rounded-md bg-gradient-to-r from-[#e4c723] to-[#9c8817] flex items-center justify-center text-white font-bold shadow-sm">COF</div>
+          <div className="w-10 h-10 rounded-md bg-gradient-to-r from-amber-600 to-amber-700 flex items-center justify-center text-white font-bold shadow-sm">COF</div>
           <AnimatePresence>
             {isOpen && (
               <motion.div key="brand" initial={{ opacity: 0, x: -6 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -6 }} className="flex-1 overflow-hidden">
@@ -112,7 +111,7 @@ export default function SideBar({
 
         {/* profile */}
         <div className="p-4 flex items-center gap-3 border-b border-amber-100">
-          <div className="w-12 h-12 rounded-full bg-gradient-to-r from-[#e4c723] to-[#9c8817] flex items-center justify-center text-white font-semibold shadow">A</div>
+          <div className="w-12 h-12 rounded-full bg-gradient-to-r from-amber-600 to-amber-700 flex items-center justify-center text-white font-semibold shadow">A</div>
           <AnimatePresence>
             {isOpen && (
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
@@ -135,7 +134,7 @@ export default function SideBar({
                       to={item.to}
                       onClick={() => setActiveItem(item.id)}
                       className={`group flex items-center gap-3 w-full px-3 py-2 rounded-md transition-all focus:outline-none ${
-                        isActive ? 'bg-gradient-to-r from-[#e4c723] to-[#9c8817] text-white shadow' : 'text-amber-900'
+                        isActive ? 'bg-gradient-to-r from-amber-600 to-amber-700 text-white shadow' : 'text-amber-900'
                       }`}
                     >
                       <motion.span
@@ -157,7 +156,7 @@ export default function SideBar({
                         )}
                       </AnimatePresence>
 
-                      {isActive && <motion.div className="ml-auto w-1 h-6 rounded-full bg-gradient-to-r from-[#e4c723] to-[#9c8817]" initial={{ opacity: 0, scaleX: 0 }} animate={{ opacity: 1, scaleX: 1 }} transition={{ duration: 0.14 }} />}
+                      {isActive && <motion.div className="ml-auto w-1 h-6 rounded-full bg-gradient-to-r from-amber-600 to-amber-700" initial={{ opacity: 0, scaleX: 0 }} animate={{ opacity: 1, scaleX: 1 }} transition={{ duration: 0.14 }} />}
                     </Link>
                   </motion.div>
                 </li>

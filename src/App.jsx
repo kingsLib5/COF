@@ -5,7 +5,9 @@ import Login from './Pages/Login';
 import Selection from './Pages/Selection';
 import InvenDash from './Component/Inventory-Component/InvenDash';
 import OverView from './Component/Inventory-Component/OverView';
+import InvoiceDash from './Component/Invoice-Component/InvoiceDash';
 import RecordStocks from './Component/Inventory-Component/RecordStocks';
+import InOverview from './Component/Invoice-Component/InOverview';
 // Import other components to be rendered in the Outlet
 // import Inventory from './Pages/Inventory';
 // import Invoices from './Pages/Invoices';
@@ -31,6 +33,17 @@ function App() {
             {/* <Route path="settings" element={<Settings />} /> */}
             {/* <Route path="help" element={<Help />} />  */}
           </Route>
+
+                    <Route path="/cofinvoicedashboard" element={<InvoiceDash />}>
+                      <Route index element={<InOverview />} /> {/* Default content for /cofdashboard */}
+                    <Route path="new-records" element={<RecordStocks />} /> 
+                      {/* <Route path="invoices" element={<Invoices />} /> */}
+                      {/* <Route path="customers" element={<Customers />} /> */}
+                      {/* <Route path="analytics" element={<Analytics />} /> */}
+                      {/* <Route path="settings" element={<Settings />} /> */}
+                      {/* <Route path="help" element={<Help />} />  */}
+                    </Route>
+
         </Routes>
       </div>
     </Router>
