@@ -54,9 +54,12 @@ function OverView() {
 
   const card = { hidden: { opacity: 0, y: 8 }, show: { opacity: 1, y: 0 } }
 
+  
+  
+
   return (
     <div className="h-[50vh] p-6 bg-gray-300">
-      <div className="max-w-7xl mx-auto grid grid-cols-12 gap-6">
+      <div className="max-w-7xl  mx-auto grid grid-cols-12 gap-6">
         {/* LEFT */}
         <div className="col-span-12 lg:col-span-4 grid gap-6">
           <motion.div initial={{opacity:0,y:-6}} animate={{opacity:1,y:0}} transition={{duration:0.45}} className="rounded-2xl p-6 bg-white/80 backdrop-blur-sm border border-amber-200 shadow-md">

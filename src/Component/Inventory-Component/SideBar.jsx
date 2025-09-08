@@ -36,10 +36,10 @@ export default function SideBar({
 
   const menuItems = [
     { id: 'over-view', label: 'Dashboard', icon: <FiGrid size={18} />, to: '/cofdashboard' },
-    { id: 'newrecords', label: 'Add-Stock', icon: <FiBox size={18} />, to: '/cofdashboard/new-records' },
-    { id: 'CheckStocks', label: 'Check-Stocks', icon: <FiFileText size={18} />, to: '/cofdashboard/new-records' },
-    { id: 'productlist', label: 'Product-List', icon: <FiUsers size={18} />, to: '/cofdashboard/new-records' },
-    { id: 'newproducts', label: 'Add-Products', icon: <FiBarChart2 size={18} />, to: '/cofdashboard/new-records' },
+    { id: 'newrecords', label: 'Add/Check-Stock', icon: <FiBox size={18} />, to: '/cofdashboard/new-records' },
+    // { id: 'CheckStocks', label: 'Check-Stocks', icon: <FiFileText size={18} />, to: '/cofdashboard/check-stocks' },
+    { id: 'productlist', label: 'Product-List', icon: <FiUsers size={18} />, to: '/cofdashboard/product-list' },
+    { id: 'newproducts', label: 'Add-Products', icon: <FiBarChart2 size={18} />, to: '/cofdashboard/add-products' },
 
   ]
 

@@ -309,7 +309,7 @@ export default function RecordStocks() {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <div className="min-h-screen bg-gray-200 p-4 md:p-6">
+    <div className="min-h-screen bg-gradient-to-br from-amber-50 to-amber-100 p-4 md:p-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
@@ -323,24 +323,21 @@ export default function RecordStocks() {
               <h1 className="text-2xl md:text-3xl font-playfair font-bold text-amber-900 mb-1 md:mb-2">Stock Records</h1>
               <p className="text-amber-700 text-sm md:text-base">Manage and track your inventory stock levels</p>
             </div>
-            <a href="/cofdashboard/add-products">
-               <button className="flex items-center gap-2 px-4 py-2 md:py-3 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition-colors shadow-md">
+            <button className="flex items-center gap-2 px-4 py-2 md:py-3 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition-colors shadow-md">
               <FiPlus />
               <span>Add New Product</span>
             </button>
-            </a>
-           
           </div>
         </motion.div>
 
         {/* Summary Cards */}
         <motion.div
-          className="grid grid-cols-2 md:grid-cols-4 mx-[110px] gap-4 md:gap-6 mb-6 md:mb-8"
+          className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-6 md:mb-8"
           initial="hidden"
           animate="show"
           variants={{ show: { transition: { staggerChildren: 0.08 } } }}
         >
-          <motion.div variants={cardVariant} className="bg-white m-[20px] rounded-xl md:rounded-2xl p-4 md:p-6 shadow-lg border border-amber-200/50">
+          <motion.div variants={cardVariant} className="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-lg border border-amber-200/50">
             <div className="flex items-center justify-between">
               <h3 className="text-amber-700 font-medium text-sm md:text-base">Total Products</h3>
               <div className="p-2 md:p-3 bg-amber-100 rounded-lg">
@@ -362,7 +359,7 @@ export default function RecordStocks() {
             <p className="text-xs md:text-sm text-amber-600 mt-1">Products available</p>
           </motion.div>
 
-          <motion.div variants={cardVariant} className="bg-white m-[20px] rounded-xl md:rounded-2xl p-4 md:p-6 shadow-lg border border-amber-200/50">
+          <motion.div variants={cardVariant} className="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-lg border border-amber-200/50">
             <div className="flex items-center justify-between">
               <h3 className="text-amber-700 font-medium text-sm md:text-base">Low Stock</h3>
               <div className="p-2 md:p-3 bg-amber-100 rounded-lg">
