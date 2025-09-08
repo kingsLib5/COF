@@ -90,9 +90,12 @@ function OverView() {
     show: { opacity: 1, y: 0 },
   };
 
+  
+  
+
   return (
     <div className="h-[50vh] p-6 bg-gray-300">
-      <div className="max-w-7xl mx-auto grid grid-cols-12 gap-6">
+      <div className="max-w-7xl  mx-auto grid grid-cols-12 gap-6">
         {/* LEFT */}
         <div className="col-span-12 lg:col-span-4 grid gap-6">
           {/* Profile card */}
