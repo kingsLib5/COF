@@ -5,7 +5,7 @@ import { FiArchive, FiFileText, FiPlus, FiCompass, FiAward, FiShoppingBag } from
 
 export default function Selection({
   inventoryRoute = '/cofdashboard',
-  invoiceRoute = '/invoices',
+  invoiceRoute = '/cofinvoicedashboard',
   leftBtnRoute = '/create',
   rightBtnRoute = '/explore',
   leftBtnLabel = 'Create',
@@ -97,18 +97,6 @@ export default function Selection({
       <div className="max-w-5xl w-full grid grid-cols-1 md:grid-cols-2 gap-10 relative z-10">
         {/* Inventory Card */}
         <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          tabIndex={0}
-          role="button"
-          aria-pressed={activeButton === 'inventory'}
-          onMouseEnter={() => setActiveButton('inventory')}
-          onMouseLeave={() => setActiveButton(null)}
-          onFocus={() => setActiveButton('inventory')}
-          onBlur={() => setActiveButton(null)}
-          onClick={() => navigate(inventoryRoute)}
-          onKeyDown={handleKeyNav(inventoryRoute)}
           initial="rest"
           whileHover="hover"
           animate={activeButton === 'inventory' ? 'hover' : 'rest'}
@@ -128,7 +116,7 @@ export default function Selection({
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
               onClick={(e) => { e.stopPropagation(); navigate(inventoryRoute) }}
-              className="px-8 py-3.5 bg-gradient-to-r from-[#e4c723] to-[#9c8817] text-white rounded-xl hover:shadow-lg transition-all font-medium flex items-center gap-2 shadow-md shadow-amber-200"
+              className="px-8 py-3.5 bg-gradient-to-r from-amber-600 to-amber-700 text-white rounded-xl hover:shadow-lg transition-all font-medium flex items-center gap-2 shadow-md shadow-amber-200"
             >
               <FiShoppingBag className="h-4 w-4" />
               Access Inventory
@@ -142,18 +130,6 @@ export default function Selection({
 
         {/* Invoice Card */}
         <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          tabIndex={0}
-          role="button"
-          aria-pressed={activeButton === 'invoice'}
-          onMouseEnter={() => setActiveButton('invoice')}
-          onMouseLeave={() => setActiveButton(null)}
-          onFocus={() => setActiveButton('invoice')}
-          onBlur={() => setActiveButton(null)}
-          onClick={() => navigate(invoiceRoute)}
-          onKeyDown={handleKeyNav(invoiceRoute)}
           initial="rest"
           whileHover="hover"
           animate={activeButton === 'invoice' ? 'hover' : 'rest'}
@@ -173,7 +149,7 @@ export default function Selection({
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
               onClick={(e) => { e.stopPropagation(); navigate(invoiceRoute) }}
-              className="px-8 py-3.5 bg-gradient-to-r from-[#e4c723] to-[#9c8817] text-white rounded-xl hover:shadow-lg transition-all font-medium flex items-center gap-2 shadow-md shadow-purple-200"
+              className="px-8 py-3.5 bg-gradient-to-r from-amber-600 to-amber-700 text-white rounded-xl hover:shadow-lg transition-all font-medium flex items-center gap-2 shadow-md shadow-purple-200"
             >
               <FiFileText className="h-4 w-4" />
               Access Invoices
@@ -199,14 +175,12 @@ export default function Selection({
       {/* Floating Buttons */}
       <motion.button
         initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.4, delay: 0.6 }}
+        animate={float}
+        transition={floatTransition}
         aria-label={leftBtnLabel}
         onClick={() => navigate(leftBtnRoute)}
         whileHover={{ scale: 1.08, boxShadow: '0 12px 25px -8px rgba(180, 83, 9, 0.3)' }}
         whileTap={{ scale: 0.96 }}
-        animate={float}
-        transition={floatTransition}
         className="fixed left-6 bottom-8 z-50 flex items-center gap-3 px-5 py-3.5 rounded-xl shadow-lg bg-gradient-to-br from-white to-amber-50 border border-amber-200 focus:outline-none focus:ring-3 focus:ring-amber-300/50"
         title={leftBtnLabel}
       >
@@ -216,14 +190,12 @@ export default function Selection({
 
       <motion.button
         initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.4, delay: 0.7 }}
+        animate={{ y: [0, -10, 0] }}
+        transition={{ duration: 3.8, ease: 'easeInOut', repeat: Infinity }}
         aria-label={rightBtnLabel}
         onClick={() => navigate(rightBtnRoute)}
         whileHover={{ scale: 1.08, boxShadow: '0 12px 25px -8px rgba(180, 83, 9, 0.5)' }}
         whileTap={{ scale: 0.96 }}
-        animate={{ y: [0, -10, 0] }}
-        transition={{ duration: 3.8, ease: 'easeInOut', repeat: Infinity }}
         className="fixed right-6 bottom-8 z-50 flex items-center gap-3 px-5 py-3.5 rounded-xl shadow-lg bg-gradient-to-r from-amber-600 to-amber-700 text-white focus:outline-none focus:ring-3 focus:ring-amber-400/50"
         title={rightBtnLabel}
       >
