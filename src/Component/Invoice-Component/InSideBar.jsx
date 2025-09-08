@@ -2,7 +2,7 @@ import React from 'react'
 
 function InSideBar() {
   return (
-    <div>
+    <div className='h-[100vh] bg-amber-200'>
       
     </div>
   )
