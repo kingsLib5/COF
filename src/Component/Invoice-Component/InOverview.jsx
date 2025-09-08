@@ -1,11 +1,11 @@
-import React from 'react'
+import React from "react";
 
-function InOverview() {
+
+export default function InOverview() {
   return (
     <div>
-      this is going to be invoice overview
+      <h2 className="text-2xl font-bold">Invoice Overview</h2>
+      <p className="mt-2">Default dashboard content.</p>
     </div>
-  )
+  );
 }
-
-export default InOverview

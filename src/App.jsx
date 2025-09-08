@@ -2,12 +2,20 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import Login from './Pages/Login';
+import CheckStocks from './Component/Inventory-Component/Check-Stocks';
+import ProductList from './Component/Inventory-Component/Product-List';
+import AddProduct from './Component/Inventory-Component/Add-Products';
+import Settings from './Component/Inventory-Component/Settings';
+import Help from './Component/Inventory-Component/Help';
 import Selection from './Pages/Selection';
 import InvenDash from './Component/Inventory-Component/InvenDash';
 import OverView from './Component/Inventory-Component/OverView';
 import InvoiceDash from './Component/Invoice-Component/InvoiceDash';
 import RecordStocks from './Component/Inventory-Component/RecordStocks';
 import InOverview from './Component/Invoice-Component/InOverview';
+import InvoiceList from "./Component/Invoice-Component/InvoiceList";
+import CreateInvoice from "./Component/Invoice-Component/CreateInvoice";
+import InvoiceCustomers from "./Component/Invoice-Component/InvoiceCustomers";
 // Import other components to be rendered in the Outlet
 // import Inventory from './Pages/Inventory';
 // import Invoices from './Pages/Invoices';
@@ -38,6 +46,9 @@ function App() {
 
                     <Route path="/cofinvoicedashboard" element={<InvoiceDash />}>
                       <Route index element={<InOverview />} /> {/* Default content for /cofdashboard */}
+                       <Route path="invoices" element={<InvoiceList />} />
+                        <Route path="create-invoice" element={<CreateInvoice />} />
+                        <Route path="customers" element={<InvoiceCustomers />} />
                     <Route path="new-records" element={<RecordStocks />} /> 
                       {/* <Route path="invoices" element={<Invoices />} /> */}
                       {/* <Route path="customers" element={<Customers />} /> */}
