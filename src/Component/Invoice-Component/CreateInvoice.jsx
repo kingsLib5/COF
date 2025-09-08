@@ -46,20 +46,20 @@ export default function CreateInvoice() {
       transition={{ duration: 0.6 }}
       className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10"
     >
-      <div className="bg-white rounded-2xl shadow-2xl p-6 sm:p-10 border border-amber-100">
+      <div className="bg-white rounded-2xl shadow-xl p-6 sm:p-10 border border-amber-100">
         {/* Header */}
         <motion.h2
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
-          className="text-3xl sm:text-4xl font-extrabold text-center bg-gradient-to-r from-amber-600 to-amber-700 bg-clip-text text-transparent mb-8"
+          className="text-3xl sm:text-4xl font-extrabold text-center bg-gradient-to-r from-amber-600 to-amber-700 bg-clip-text text-transparent mb-8 tracking-wide"
         >
           Create Invoice
         </motion.h2>
 
-        <form onSubmit={handleSubmit} className="space-y-8">
+        <form onSubmit={handleSubmit} className="space-y-10">
           {/* Invoice Header */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-1">
                 Invoice Number
@@ -69,7 +69,7 @@ export default function CreateInvoice() {
                 name="invoiceNumber"
                 value={invoice.invoiceNumber}
                 onChange={handleChange}
-                className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-amber-600 focus:border-amber-600"
+                className="w-full border border-gray-200 rounded-lg p-3 shadow-sm focus:ring-2 focus:ring-amber-600 focus:border-amber-600 transition"
               />
             </div>
             <div>
@@ -81,7 +81,7 @@ export default function CreateInvoice() {
                 name="issueDate"
                 value={invoice.issueDate}
                 onChange={handleChange}
-                className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-amber-600 focus:border-amber-600"
+                className="w-full border border-gray-200 rounded-lg p-3 shadow-sm focus:ring-2 focus:ring-amber-600 focus:border-amber-600 transition"
               />
             </div>
             <div>
@@ -93,7 +93,7 @@ export default function CreateInvoice() {
                 name="dueDate"
                 value={invoice.dueDate}
                 onChange={handleChange}
-                className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-amber-600 focus:border-amber-600"
+                className="w-full border border-gray-200 rounded-lg p-3 shadow-sm focus:ring-2 focus:ring-amber-600 focus:border-amber-600 transition"
               />
             </div>
           </div>
@@ -110,7 +110,7 @@ export default function CreateInvoice() {
                 value={invoice.customerName}
                 onChange={handleChange}
                 placeholder="e.g. Jane Doe"
-                className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-amber-600 focus:border-amber-600"
+                className="w-full border border-gray-200 rounded-lg p-3 shadow-sm focus:ring-2 focus:ring-amber-600 focus:border-amber-600 transition"
               />
             </div>
             <div>
@@ -123,7 +123,7 @@ export default function CreateInvoice() {
                 value={invoice.customerEmail}
                 onChange={handleChange}
                 placeholder="e.g. jane@example.com"
-                className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-amber-600 focus:border-amber-600"
+                className="w-full border border-gray-200 rounded-lg p-3 shadow-sm focus:ring-2 focus:ring-amber-600 focus:border-amber-600 transition"
               />
             </div>
           </div>
@@ -140,7 +140,7 @@ export default function CreateInvoice() {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.1 }}
-                  className="grid grid-cols-1 sm:grid-cols-4 gap-3"
+                  className="grid grid-cols-1 sm:grid-cols-4 gap-3 bg-amber-50/40 p-4 rounded-lg border border-amber-100 shadow-sm"
                 >
                   <input
                     type="text"
@@ -148,7 +148,7 @@ export default function CreateInvoice() {
                     placeholder="Item"
                     value={item.name}
                     onChange={(e) => handleItemChange(index, e)}
-                    className="border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-amber-600 focus:border-amber-600"
+                    className="border border-gray-200 rounded-lg p-3 focus:ring-2 focus:ring-amber-600 focus:border-amber-600"
                   />
                   <input
                     type="text"
@@ -156,7 +156,7 @@ export default function CreateInvoice() {
                     placeholder="Description"
                     value={item.description}
                     onChange={(e) => handleItemChange(index, e)}
-                    className="border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-amber-600 focus:border-amber-600"
+                    className="border border-gray-200 rounded-lg p-3 focus:ring-2 focus:ring-amber-600 focus:border-amber-600"
                   />
                   <input
                     type="number"
@@ -164,7 +164,7 @@ export default function CreateInvoice() {
                     placeholder="Qty"
                     value={item.quantity}
                     onChange={(e) => handleItemChange(index, e)}
-                    className="border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-amber-600 focus:border-amber-600"
+                    className="border border-gray-200 rounded-lg p-3 focus:ring-2 focus:ring-amber-600 focus:border-amber-600"
                   />
                   <input
                     type="number"
@@ -172,7 +172,7 @@ export default function CreateInvoice() {
                     placeholder="Price"
                     value={item.price}
                     onChange={(e) => handleItemChange(index, e)}
-                    className="border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-amber-600 focus:border-amber-600"
+                    className="border border-gray-200 rounded-lg p-3 focus:ring-2 focus:ring-amber-600 focus:border-amber-600"
                   />
                 </motion.div>
               ))}
@@ -180,14 +180,14 @@ export default function CreateInvoice() {
             <button
               type="button"
               onClick={addItem}
-              className="mt-4 bg-gradient-to-r from-amber-600 to-amber-700 text-white px-6 py-2 rounded-lg shadow hover:opacity-90 transition"
+              className="mt-5 bg-gradient-to-r from-amber-600 to-amber-700 text-white font-medium px-6 py-2.5 rounded-lg shadow-md hover:scale-105 hover:shadow-lg transition"
             >
               + Add Item
             </button>
           </div>
 
           {/* Subtotal */}
-          <div className="text-right font-bold text-xl text-gray-800">
+          <div className="text-right font-bold text-2xl text-gray-800">
             Subtotal:{" "}
             <span className="text-amber-700">
               ₦{calculateSubtotal().toLocaleString()}
@@ -196,12 +196,14 @@ export default function CreateInvoice() {
 
           {/* Submit */}
           <div className="text-center">
-            <button
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.97 }}
               type="submit"
-              className="w-full sm:w-auto bg-gradient-to-r from-amber-600 to-amber-700 text-white px-8 py-3 rounded-xl shadow-lg hover:scale-105 transition"
+              className="w-full sm:w-auto bg-gradient-to-r from-amber-600 to-amber-700 text-white font-semibold px-10 py-3 rounded-xl shadow-xl hover:shadow-amber-400/40 transition"
             >
               Generate Invoice
-            </button>
+            </motion.button>
           </div>
         </form>
       </div>
