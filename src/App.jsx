@@ -18,6 +18,7 @@ const CheckStocks = lazy(() => import('./Component/Inventory-Component/CheckStoc
 const InvoiceList = lazy(() => import("./Component/Invoice-Component/InvoiceList"));
 const CreateInvoice = lazy(() => import("./Component/Invoice-Component/CreateInvoice"));
 const InvoiceCustomers = lazy(() => import("./Component/Invoice-Component/InvoiceCustomers"));
+const InvoiceDetails = lazy(() => import("./Component/Invoice-Component/InvoiceDetails"));
 
 
 
@@ -223,6 +224,7 @@ function AppContent() {
              <Route path="invoices" element={<InvoiceList />} />
                         <Route path="create-invoice" element={<CreateInvoice />} />
                         <Route path="customers" element={<InvoiceCustomers />} />
+                        <Route path="invoices/:id" element={<InvoiceDetails />} />
                     {/* <Route path="new-records" element={<RecordStocks />} />  */}
           </Route>
                    
