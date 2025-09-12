@@ -10,6 +10,7 @@ import {
   FiAlignLeft,
   FiBarChart
 } from "react-icons/fi";
+import api from '../../api/axiosConfig';
 
 export default function AddProducts() {
   const [productData, setProductData] = useState({
@@ -73,22 +74,22 @@ export default function AddProducts() {
     "Accessories"
   ];
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+  setIsSubmitting(true);
 
-    // simulate API
-    setTimeout(() => {
-      console.log("Product data:", productData, images);
-      setIsSubmitting(false);
-      alert("Product added successfully!");
-      // reset
-      setProductData({ name: "", description: "", category: "", price: "", stock: "", sku: "" });
-      images.forEach((img) => URL.revokeObjectURL(img.preview));
-      setImages([]);
-      if (inputRef.current) inputRef.current.value = "";
-    }, 1200);
-  };
+  try {
+    const payload = { ...productData };
+    await api.post('/api/products', payload); // token auto-attached by axios instance
+    alert('Product added successfully!');
+    setProductData({ name: '', description: '', category: '', price: '', stock: '', sku: '' });
+  } catch (err) {
+    console.error('Add product error:', err);
+    alert(err.response?.data?.message || 'Failed to add product');
+  } finally {
+    setIsSubmitting(false);
+  }
+};
 
   // framer variants
   const cardVariants = {
@@ -103,7 +104,7 @@ export default function AddProducts() {
 
   return (
     <motion.div
-      className="min-h-screen bg-gray-100 p-6"
+      className="min-h-screen bg-gray-300 p-6"
       initial="hidden"
       animate="show"
       variants={{ show: { transition: { staggerChildren: 0.04 } } }}

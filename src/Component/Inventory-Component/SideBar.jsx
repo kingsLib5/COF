@@ -56,8 +56,23 @@ export default function SideBar({
     visible: { opacity: 1, x: 0, transition: { duration: 0.16 } }
   }
 
+  
+
   const handleMouseEnter = () => { if (window.innerWidth >= 1024) setIsOpen(true) }
   const handleMouseLeave = () => { if (window.innerWidth >= 1024 && !initialOpen) setIsOpen(false) }
+
+  const handleLogout = () => {
+  // Clear auth data (adjust keys if you named them differently)
+  localStorage.removeItem("authToken"); 
+  localStorage.removeItem("user");
+
+  // optional: callback if parent provided
+  onLogout();
+
+  // redirect to login page
+  navigate("/login");
+};
+
 
   return (
     <>
@@ -184,25 +199,26 @@ export default function SideBar({
         {/* logout */}
         <div className="p-3 border-t border-amber-100">
           <motion.button
-            onClick={() => onLogout()}
-            whileHover={{ x: 6 }}
-            className="w-full flex items-center gap-3 px-3 py-2 rounded-md text-amber-900 hover:bg-yellow-50"
-          >
-            <motion.span style={{ color: '#b77b1d' }} whileHover={{ scale: 1.08 }}>
-              <FiLogOut size={18} />
-            </motion.span>
-            <AnimatePresence>
-              {isOpen && (
-                <motion.span
-                  initial={{ opacity: 0, x: -6 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -6 }}
-                >
-                  Logout
-                </motion.span>
-              )}
-            </AnimatePresence>
-          </motion.button>
+  onClick={handleLogout}
+  whileHover={{ x: 6 }}
+  className="w-full flex items-center gap-3 px-3 py-2 rounded-md text-amber-900 hover:bg-yellow-50"
+>
+  <motion.span style={{ color: '#b77b1d' }} whileHover={{ scale: 1.08 }}>
+    <FiLogOut size={18} />
+  </motion.span>
+  <AnimatePresence>
+    {isOpen && (
+      <motion.span
+        initial={{ opacity: 0, x: -6 }}
+        animate={{ opacity: 1, x: 0 }}
+        exit={{ opacity: 0, x: -6 }}
+      >
+        Logout
+      </motion.span>
+    )}
+  </AnimatePresence>
+</motion.button>
+
         </div>
       </motion.aside>
     </>
