@@ -1,150 +1,102 @@
-import React, { useState } from "react";
+// src/Component/Invoice-Component/InvoiceList.jsx
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { FiFileText } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
+import api from "../../api";
 
 export default function InvoiceList() {
-  // temporary mock data (replace later with backend data)
-  const [invoices] = useState([
-    {
-      id: 1,
-      number: "INV-001",
-      customer: "John Doe",
-      issueDate: "2025-09-04",
-      dueDate: "2025-09-11",
-      total: 25000,
-      status: "Paid",
-    },
-    {
-      id: 2,
-      number: "INV-002",
-      customer: "Cloud of Fragrance",
-      issueDate: "2025-09-05",
-      dueDate: "2025-09-12",
-      total: 45000,
-      status: "Pending",
-    },
-    {
-      id: 3,
-      number: "INV-003",
-      customer: "Jane Smith",
-      issueDate: "2025-09-06",
-      dueDate: "2025-09-13",
-      total: 38000,
-      status: "Overdue",
-    },
-  ]);
+  const [invoices, setInvoices] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredInvoices, setFilteredInvoices] = useState([]);
+  const navigate = useNavigate();
 
-  const statusClasses = {
-    Paid: "bg-green-100 text-green-700 border border-green-200",
-    Pending: "bg-yellow-100 text-yellow-700 border border-yellow-200",
-    Overdue: "bg-red-100 text-red-700 border border-red-200",
+  useEffect(() => {
+    const fetchInvoices = async () => {
+      try {
+        const res = await api.get("/invoices");
+        setInvoices(res.data);
+        setFilteredInvoices(res.data);
+      } catch (err) {
+        console.error("Error fetching invoices:", err);
+      }
+    };
+    fetchInvoices();
+  }, []);
+
+  useEffect(() => {
+    const filtered = invoices.filter(
+      (inv) =>
+        inv.customerName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        inv.invoiceNumber.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setFilteredInvoices(filtered);
+  }, [searchQuery, invoices]);
+
+  const handleClick = (id) => {
+    navigate(`/cofinvoicedashboard/invoices/${id}`);
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      className="max-w-6xl mx-auto p-6"
-    >
-      <h2 className="text-3xl font-extrabold mb-6 bg-gradient-to-r from-amber-600 to-amber-700 bg-clip-text text-transparent tracking-tight">
-        Invoice List
-      </h2>
-
-      {/* ✅ Table view (desktop) */}
-      <div className="hidden md:block overflow-x-auto bg-white rounded-2xl shadow-lg border border-gray-100">
-        <table className="w-full border-collapse text-sm">
-          <thead>
-            <tr className="bg-gradient-to-r from-amber-600 to-amber-700 text-white text-left text-sm uppercase tracking-wide">
-              <th className="p-4">Invoice #</th>
-              <th className="p-4">Customer</th>
-              <th className="p-4">Issue Date</th>
-              <th className="p-4">Due Date</th>
-              <th className="p-4">Total</th>
-              <th className="p-4">Status</th>
-              <th className="p-4 text-center">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {invoices.map((inv, i) => (
-              <motion.tr
-                key={inv.id}
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: i * 0.1 }}
-                className="border-b last:border-none hover:bg-amber-50 transition-colors"
-              >
-                <td className="p-4 font-semibold">{inv.number}</td>
-                <td className="p-4">{inv.customer}</td>
-                <td className="p-4">{inv.issueDate}</td>
-                <td className="p-4">{inv.dueDate}</td>
-                <td className="p-4 font-bold text-gray-800">
-                  ₦{inv.total.toLocaleString()}
-                </td>
-                <td className="p-4">
-                  <span
-                    className={`px-3 py-1 rounded-full text-xs font-semibold ${statusClasses[inv.status]}`}
-                  >
-                    {inv.status}
-                  </span>
-                </td>
-                <td className="p-4 text-center">
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-amber-600 to-amber-700 text-white shadow hover:shadow-md transition"
-                  >
-                    <FiFileText className="text-lg" />
-                    View
-                  </motion.button>
-                </td>
-              </motion.tr>
-            ))}
-          </tbody>
-        </table>
+    <div className="min-h-screen bg-gradient-to-br from-[#fdf9e7] to-[#fffced] p-6 relative overflow-hidden">
+      <div className="absolute inset-0 opacity-20 pointer-events-none">
+        <div className="w-96 h-96 bg-gradient-to-r from-amber-600 to-amber-700 rounded-full blur-3xl absolute -top-20 -left-20"></div>
+        <div className="w-72 h-72 bg-gradient-to-r from-amber-700 to-amber-600 rounded-full blur-3xl absolute bottom-0 right-0"></div>
       </div>
 
-      {/* ✅ Card view (mobile) */}
-      <div className="space-y-4 md:hidden">
-        {/* hshshsgsgh */}
-        {invoices.map((inv, i) => (
-          <motion.div
-            key={inv.id}
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.1 }}
-            className="bg-white rounded-2xl shadow-lg p-5 border border-amber-100"
-          >
-            <div className="flex justify-between items-center mb-3">
-              <h3 className="text-lg font-bold text-amber-700">{inv.number}</h3>
-              <span
-                className={`px-3 py-1 rounded-full text-xs font-semibold ${statusClasses[inv.status]}`}
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="max-w-6xl mx-auto py-10 px-6 relative z-10"
+      >
+        <h2 className="text-3xl font-bold text-amber-700 mb-6">Invoice List</h2>
+
+        <div className="mb-6">
+          <input
+            type="text"
+            placeholder="Search by customer name or invoice number..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full border border-amber-200 rounded-lg px-4 py-3 focus:ring-2 focus:ring-amber-400"
+          />
+        </div>
+
+        <div className="grid gap-6">
+          {filteredInvoices.length === 0 ? (
+            <p className="text-gray-500 text-center">No invoices found.</p>
+          ) : (
+            filteredInvoices.map((invoice) => (
+              <motion.div
+                key={invoice._id}
+                whileHover={{ scale: 1.02 }}
+                className="bg-white rounded-2xl shadow-lg p-6 flex items-center justify-between border border-amber-100 cursor-pointer"
+                onClick={() => handleClick(invoice._id)}
               >
-                {inv.status}
-              </span>
-            </div>
-            <p className="text-sm text-gray-700">
-              <span className="font-medium">Customer:</span> {inv.customer}
-            </p>
-            <p className="text-sm text-gray-700">
-              <span className="font-medium">Issue:</span> {inv.issueDate}
-            </p>
-            <p className="text-sm text-gray-700">
-              <span className="font-medium">Due:</span> {inv.dueDate}
-            </p>
-            <p className="text-base text-gray-900 font-bold mt-2 mb-4">
-              ₦{inv.total.toLocaleString()}
-            </p>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              className="w-full flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-amber-600 to-amber-700 text-white font-semibold shadow hover:shadow-md"
-            >
-              <FiFileText className="text-white text-lg" />
-              View Invoice
-            </motion.button>
-          </motion.div>
-        ))}
-      </div>
-    </motion.div>
-    // hh
+                <div className="flex items-center gap-4">
+                  <div className="text-amber-600 bg-amber-50 p-3 rounded-full">
+                    <FiFileText className="text-2xl" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-800">
+                      {invoice.customerName}
+                    </h3>
+                    <p className="text-sm text-gray-500">
+                      Invoice: {invoice.invoiceNumber}
+                    </p>
+                  </div>
+                </div>
+                <div className="text-amber-700 font-bold text-lg">
+                  ₦
+                  {invoice.items
+                    .reduce((sum, item) => sum + item.quantity * item.price, 0)
+                    .toLocaleString()}
+                </div>
+              </motion.div>
+            ))
+          )}
+        </div>
+      </motion.div>
+    </div>
   );
 }

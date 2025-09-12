@@ -19,6 +19,7 @@ const CreateInvoice = lazy(() => import("./Component/Invoice-Component/CreateInv
 const InvoiceCustomers = lazy(() => import("./Component/Invoice-Component/InvoiceCustomers"));
 import PrivateRoute from './Component/PrivateRoute';
 
+const InvoiceDetails = lazy(() => import("./Component/Invoice-Component/InvoiceDetails"));
 
 
 
@@ -208,6 +209,20 @@ function AppContent() {
   <Route path="create-invoice" element={<CreateInvoice />} />
   <Route path="customers" element={<InvoiceCustomers />} />
 </Route>
+          <Route path="/cofinvoicedashboard" element={
+            <PageTransition>
+              <Suspense fallback={<FallbackLoader />}>
+                <InvoiceDash />
+              </Suspense>
+            </PageTransition>
+          }>
+            <Route index element={<InOverview />} />
+             <Route path="invoices" element={<InvoiceList />} />
+                        <Route path="create-invoice" element={<CreateInvoice />} />
+                        <Route path="customers" element={<InvoiceCustomers />} />
+                        <Route path="invoices/:id" element={<InvoiceDetails />} />
+                    {/* <Route path="new-records" element={<RecordStocks />} />  */}
+          </Route>
                    
 
         </Routes>

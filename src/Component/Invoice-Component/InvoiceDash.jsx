@@ -1,18 +1,18 @@
 // src/Component/Invoice-Component/InvoiceDash.jsx
 import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
-import SideBar from "./Sidebar";
-import { FiFileText, FiUsers, FiBarChart2, FiPlus } from "react-icons/fi";
+import SideBar from "./SideBar";
+import { FiFileText, FiUsers, FiPlus } from "react-icons/fi";
 
 const InvoiceDash = () => {
   const [isSidebarExpanded, setIsSidebarExpanded] = useState(false);
 
   const menus = [
-    { name: "Overview", icon: <FiFileText />, path: "" },            // default
+    { name: "Overview", icon: <FiFileText />, path: "" },            
     { name: "Invoices", icon: <FiFileText />, path: "invoices" },
     { name: "Create Invoice", icon: <FiPlus />, path: "create-invoice" },
     { name: "Customers", icon: <FiUsers />, path: "customers" },
-    // { name: "Reports", icon: <FiBarChart2 />, path: "reports" },
+    // ✅ Remove "Invoice Details" from sidebar
   ];
 
   return (
